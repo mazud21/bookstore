@@ -52,8 +52,11 @@ class _ListBookState extends State<ListBook> {
                       child: Card(
                         elevation: 8,
                         child: ListTile(
-                          leading: Image.network(
-                              data.dataBook[i].image as String),
+                          leading: Hero(
+                            tag: 'img',
+                            child: Image.network(
+                                data.dataBook[i].image as String),
+                          ),
                           title: Text(
                             data.dataBook[i].title as String,
                             style: const TextStyle(

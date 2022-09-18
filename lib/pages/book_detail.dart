@@ -56,9 +56,12 @@ class _BooksDetailState extends State<BooksDetail> {
                   Center(
                     child: Column(
                       children: [
-                        Image.network(
-                          detailBook?.image as String,
-                          width: MediaQuery.of(context).size.width * 0.50,
+                        Hero(
+                          tag: 'img',
+                          child: Image.network(
+                            detailBook?.image as String,
+                            width: MediaQuery.of(context).size.width * 0.50,
+                          ),
                         ),
                         Text(detailBook?.title as String, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                         SizedBox(

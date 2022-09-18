@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/book_model.dart';
 import '../providers/load_data.dart';
 import 'book_detail.dart';
 
@@ -15,15 +14,6 @@ class ListSearchBook extends StatefulWidget {
 class _ListSearchBookState extends State<ListSearchBook> {
 
   TextEditingController etSearch = TextEditingController();
-
-  List<BooksModel>? bookModel;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-   bookModel?.clear();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +30,7 @@ class _ListSearchBookState extends State<ListSearchBook> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book Store'),
+        title: Text('Search Book'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -72,14 +62,14 @@ class _ListSearchBookState extends State<ListSearchBook> {
                       return Consumer<LoadData>(
                         builder: (context, data, _) {
                           return ListView.builder(
-                            itemCount: data.dataBook.length,
+                            itemCount: data.dataSearchBook.length,
                             itemBuilder: (context, i) {
                               return InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => BooksDetail(
-                                        id: data.dataBook[i].isbn13 as String,
+                                        id: data.dataSearchBook[i].isbn13 as String,
                                       ),
                                     ),
                                   );
@@ -87,16 +77,16 @@ class _ListSearchBookState extends State<ListSearchBook> {
                                 child: Card(
                                   elevation: 8,
                                   child: ListTile(
-                                    leading: Image.network(data.dataBook[i].image as String),
+                                    leading: Image.network(data.dataSearchBook[i].image as String),
                                     title: Text(
-                                      data.dataBook[i].title as String,
+                                      data.dataSearchBook[i].title as String,
                                       style: TextStyle(
                                           fontSize: 18, fontWeight: FontWeight.bold),
                                     ),
                                     subtitle: Text(
-                                        '${data.dataBook[i].subtitle}'),
+                                        '${data.dataSearchBook[i].subtitle}'),
                                     trailing: Text(
-                                        "${data.dataBook[i].price}"),
+                                        "${data.dataSearchBook[i].price}"),
                                   ),
                                 ),
                               );
